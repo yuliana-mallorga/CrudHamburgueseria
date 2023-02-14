@@ -9,22 +9,21 @@ import ProductCreate from "./components/views/productCreate/ProductCreate";
 import ProductEdit from "./components/views/productEdit/ProductEdit";
 import Error404 from "./components/views/error404/Error404";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "./config/axiosInit"
+import axios from "./config/axiosInit";
 
 function App() {
   const [products, setProducts] = useState([]);
   //Usamos la variable de entorno
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
- 
+
   useEffect(() => {
     //llamado a la API
     getApi();
   }, []);
 
-
   const getApi = async () => {
     try {
-     /*  const res = await fetch(URL);
+      /*  const res = await fetch(URL);
       const productApi = await res.json();
       setProducts(productApi);
        */
@@ -44,8 +43,18 @@ function App() {
         <main>
           <Routes>
             <Route exact path="/" element={<Home products={products} />} />
-            <Route exact path="/product/table" element={<ProductsTable products={products} />} />
-            <Route exact path="/product/create" element={<ProductCreate URL={URL}  getApi={ getApi }/>} />
+            <Route
+              exact
+              path="/product/table"
+              element={
+                <ProductsTable products={products} URL={URL} getApi={getApi} />
+              }
+            />
+            <Route
+              exact
+              path="/product/create"
+              element={<ProductCreate URL={URL} getApi={getApi} />}
+            />
             <Route exact path="/product/edit/:id" element={<ProductEdit />} />
             <Route exact path="*" element={<Error404 />} />
           </Routes>

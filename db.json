@@ -78,13 +78,6 @@
       "id": 11
     },
     {
-      "productName": "Burger",
-      "price": "1223",
-      "urlImg": "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "category": "de-carne",
-      "id": 12
-    },
-    {
       "productName": "Pork Sandwich",
       "price": "1250",
       "urlImg": "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -97,20 +90,6 @@
       "urlImg": "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "category": "de-carne",
       "id": 14
-    },
-    {
-      "productName": "Burger",
-      "price": "1121",
-      "urlImg": "https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg",
-      "category": "de-carne",
-      "id": 15
-    },
-    {
-      "productName": "Burger",
-      "price": "1222",
-      "urlImg": "https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg",
-      "category": "de-carne",
-      "id": 16
     }
   ]
 }
