@@ -28,7 +28,7 @@ function App() {
       setProducts(productApi);
        */
       const res = await axios.get(URL);
-      console.log(res.data);
+      //console.log(res.data);
       const productApi = res.data;
       setProducts(productApi);
     } catch (error) {
@@ -55,7 +55,7 @@ function App() {
               path="/product/create"
               element={<ProductCreate URL={URL} getApi={getApi} />}
             />
-            <Route exact path="/product/edit/:id" element={<ProductEdit />} />
+            <Route exact path="/product/edit/:id" element={<ProductEdit URL={URL} getApi={getApi}/>} />
             <Route exact path="*" element={<Error404 />} />
           </Routes>
         </main>
