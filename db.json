@@ -64,10 +64,10 @@
       "id": 9
     },
     {
-      "productName": "Burger Mac",
-      "price": "1150",
+      "productName": "Burger Macky",
+      "price": "1250",
       "urlImg": "https://images.pexels.com/photos/551991/pexels-photo-551991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "category": "de-carne",
+      "category": "de-pollo",
       "id": 10
     },
     {
