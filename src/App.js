@@ -7,6 +7,7 @@ import Footer from "./components/layout/Footer";
 import ProductsTable from "./components/views/ProductsTable/ProductsTable";
 import ProductCreate from "./components/views/productCreate/ProductCreate";
 import ProductEdit from "./components/views/productEdit/ProductEdit";
+import ProductDetails from "./components/views/productDetails/ProductDetails"
 import Error404 from "./components/views/error404/Error404";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "./config/axiosInit";
@@ -56,6 +57,11 @@ function App() {
               element={<ProductCreate URL={URL} getApi={getApi} />}
             />
             <Route exact path="/product/edit/:id" element={<ProductEdit URL={URL} getApi={getApi}/>} />
+            <Route
+              exact
+              path="/product/buy/:id"
+              element={<ProductDetails URL={URL}/>}
+            />
             <Route exact path="*" element={<Error404 />} />
           </Routes>
         </main>

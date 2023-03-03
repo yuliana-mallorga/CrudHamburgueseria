@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
 import {
   validateProductName,
@@ -16,9 +16,13 @@ const ProductCreate = ({ URL, getApi }) => {
   const [price, setPrice] = useState(0);
   const [urlImg, setUrlImg] = useState("");
   const [category, setCategory] = useState(""); */
-
+   
   //One general state
   const [inputs, setInputs] = useState({})
+
+  //errors state
+  const [errors, setErrors] = useState([]);
+  const [show, setShow] = useState(true);
 
   //useNavigate
   const navigate = useNavigate();
@@ -95,7 +99,10 @@ const ProductCreate = ({ URL, getApi }) => {
             navigate("/product/table");
           }
         } catch (error) {
-          console.log(error);
+          console.log(error.response.data.message);
+          //console.log(error.response.data.errors.map(error=> error.msg));
+          setErrors(error.response.data.errors?.map(error=> error.msg));
+          setShow(true);
         }
       }
     })
@@ -162,6 +169,11 @@ const ProductCreate = ({ URL, getApi }) => {
             <button className="btn-yellow">Save</button>
           </div>
         </Form>
+        { errors?.length > 0 && errors?.map(error => (
+        show && <Alert key={error} variant='danger' onClose={() => setShow(false)} dismissible>
+          {error}
+        </Alert>
+      ))}
       </Container>
     </div>
   );
