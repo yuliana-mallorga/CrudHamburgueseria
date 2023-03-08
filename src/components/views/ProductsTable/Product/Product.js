@@ -20,12 +20,18 @@ const Product = ({ product, URL, getApi }) => {
       if (result.isConfirmed) {
         try {
           //la petición delete con fetch
-         /*  const res = await fetch(`${URL}/${id}`, {
+          /*  const res = await fetch(`${URL}/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
           }); */
 
-          const res = await axios.delete(`${URL}/${id}`);
+          const res = await axios.delete(`${URL}/${id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": JSON.parse(localStorage.getItem("user-token"))
+                .token,
+            },
+          });
 
           if (res.status === 200) {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");

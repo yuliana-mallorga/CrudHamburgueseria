@@ -19,10 +19,11 @@ const ProductCreate = ({ URL, getApi }) => {
    
   //One general state
   const [inputs, setInputs] = useState({})
-
+  
   //errors state
-  const [errors, setErrors] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const [show, setShow] = useState(true);
+
 
   //useNavigate
   const navigate = useNavigate();
@@ -75,18 +76,21 @@ const ProductCreate = ({ URL, getApi }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //la peticion POST con fetch
-          /* const res = await fetch(URL, { 
-            method: 'POST',
+           /*  const res = await fetch(URL, {
+            method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "x-access-token": JSON.parse(localStorage.getItem("user-token")).token
             },
             body: JSON.stringify(newProduct),
           }); */
-
-          //la peticion POST con Axios
-      
-          const res = await axios.post(URL, newProduct);
+          const res = await axios.post(URL, newProduct, {
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": JSON.parse(localStorage.getItem("user-token"))
+                .token,
+            },
+          });
           console.log(res);
 
           if(res.status === 201){
@@ -99,9 +103,13 @@ const ProductCreate = ({ URL, getApi }) => {
             navigate("/product/table");
           }
         } catch (error) {
-          console.log(error.response.data.message);
-          //console.log(error.response.data.errors.map(error=> error.msg));
-          setErrors(error.response.data.errors?.map(error=> error.msg));
+          console.log(error.response.data.errors);
+          error.response.data?.message &&
+            setErrorMessage(error.response.data?.message);
+          error.response.data.errors.length > 0 &&
+            error.response.data.errors?.map((error) =>
+              setErrorMessage(error.msg)
+            );
           setShow(true);
         }
       }
@@ -169,11 +177,16 @@ const ProductCreate = ({ URL, getApi }) => {
             <button className="btn-yellow">Save</button>
           </div>
         </Form>
-        { errors?.length > 0 && errors?.map(error => (
-        show && <Alert key={error} variant='danger' onClose={() => setShow(false)} dismissible>
-          {error}
+        {show && (
+        <Alert
+          key={errorMessage}
+          variant="danger"
+          onClose={() => setShow(false)}
+          dismissible
+        >
+          {errorMessage}
         </Alert>
-      ))}
+        )}
       </Container>
     </div>
   );
