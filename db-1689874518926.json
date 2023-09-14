@@ -90,13 +90,6 @@
       "urlImg": "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "category": "de-carne",
       "id": 13
-    },
-    {
-      "productName": "burger kind",
-      "price": "9200",
-      "urlImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmZacDzPH8yaf2c_wded-2Wvf9c2okZ2KfwIbNEYKZ&s",
-      "category": "de-cerdo",
-      "id": 14
     }
   ]
 }

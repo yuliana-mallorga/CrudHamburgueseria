@@ -61,7 +61,7 @@ const Register = ({ setLoggedUser }) => {
       <Container className="py-5">
         <h1>Register</h1>
         <hr />
-        <Form className="my-5" onSubmit={handleSubmit}>
+        <Form className="my-5 p-5" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>User name*</Form.Label>
             <Form.Control

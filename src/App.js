@@ -13,14 +13,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "./config/axiosInit";
 import Login from "./components/views/login/Login";
 import Register from "./components/views/register/Register";
-import ProtectedRoute from "./routes/ProtectedRoute";
+//import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [loggedUser, setLoggedUser] = useState({});
   //Usamos la variable de entorno
   const URL = process.env.REACT_APP_API_HAMBURGUESERIA;
-
+  
   useEffect(() => {
     //llamado a la API
     getApi();
@@ -28,14 +28,14 @@ function App() {
 
   const getApi = async () => {
     try {
-      /*  const res = await fetch(URL);
-      const productApi = await res.json();
-      setProducts(productApi);
-       */
+      // const res = await fetch(URL);
+      // const productApi = await res.json();
+      // setProducts(productApi);
+       
       const res = await axios.get(URL);
       //console.log(res.data);
       const productApi = res.data;
-      setProducts(productApi);
+      setProducts(productApi); 
     } catch (error) {
       console.log(error);
     }
@@ -48,12 +48,13 @@ function App() {
         <main>
           <Routes>
             <Route exact path="/" element={<Home products={products} />} />
-            <Route
+            {/* <Route
               path="/*"
               element={
                 <ProtectedRoute>
-                  <Routes>
-                    <Route
+                  <Routes> 
+                  
+                    <
                       exact
                       path="/product/table"
                       element={
@@ -63,8 +64,20 @@ function App() {
                           getApi={getApi}
                         />
                       }
-                    />
-                    <Route
+            /> */}
+          <Route
+              exact
+              path="/product/table"
+              element={
+                        <ProductsTable
+                          products={products}
+                          URL={URL}
+                          getApi={getApi}
+                      />
+                      }
+            />
+                   
+                      <Route
                       exact
                       path="/product/create"
                       element={<ProductCreate URL={URL} getApi={getApi} />}
@@ -74,10 +87,10 @@ function App() {
                       path="/product/edit/:id"
                       element={<ProductEdit URL={URL} getApi={getApi} />}
                     />
-                  </Routes>
+                  {/* </Routes>
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
               exact
               path="/product/buy/:id"

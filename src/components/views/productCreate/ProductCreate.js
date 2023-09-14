@@ -33,7 +33,7 @@ const ProductCreate = ({ URL, getApi }) => {
    const value = event.target.value;
    setInputs((values)=> ({...values,  [name]: value }));
   };
-
+  console.log("este valor es de event.target name: value",inputs);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -74,6 +74,7 @@ const ProductCreate = ({ URL, getApi }) => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Save'
     }).then(async (result) => {
+    // debugger
       if (result.isConfirmed) {
         try {
            /*  const res = await fetch(URL, {
@@ -84,14 +85,15 @@ const ProductCreate = ({ URL, getApi }) => {
             },
             body: JSON.stringify(newProduct),
           }); */
-          const res = await axios.post(URL, newProduct, {
-            headers: {
-              "Content-Type": "application/json",
-              "x-access-token": JSON.parse(localStorage.getItem("user-token"))
-                .token,
-            },
-          });
-          console.log(res);
+         //peticion con Axios
+           const res = await axios.post(URL, newProduct) //borrar ), {
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //     "x-access-token": JSON.parse(localStorage.getItem("user-token"))
+          //       .token,
+          //   },
+          // });
+          console.log("envio del formulario de creacion de productos", res);
 
           if(res.status === 201){
             Swal.fire("Created", "Your product have been  created successfully", "success");
@@ -103,11 +105,10 @@ const ProductCreate = ({ URL, getApi }) => {
             navigate("/product/table");
           }
         } catch (error) {
-          console.log(error.response.data.errors);
-          error.response.data?.message &&
-            setErrorMessage(error.response.data?.message);
-          error.response.data.errors.length > 0 &&
-            error.response.data.errors?.map((error) =>
+          console.log(error.response);  // quite: .data.errors
+          error.response?.message &&
+            setErrorMessage(error.response?.message);
+            error.response.map((error) =>
               setErrorMessage(error.msg)
             );
           setShow(true);

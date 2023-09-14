@@ -24,7 +24,13 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
               <Link className="nav-link" to="/">
                 Home
               </Link>
-              {loggedUser.token ? (
+              <Link className="nav-link" to="/product/table">
+                Products-0
+              </Link>
+              <Link className="nav-link" to="/product/create">
+                Products create
+              </Link>
+              {/* {loggedUser.token ? (
                 <>
                   <Button variant="dark" onClick={logout}>Log out</Button>
                   <Link className="nav-link" to="/product/table">
@@ -35,7 +41,7 @@ const Navigation = ({ loggedUser, setLoggedUser }) => {
                 <Link className="nav-link" to="/auth/login">
                   Login
                 </Link>
-              )}
+              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>
